@@ -47,6 +47,7 @@ import me.nereo.multi_image_selector.bean.Folder;
 import me.nereo.multi_image_selector.bean.Image;
 import me.nereo.multi_image_selector.utils.FileUtils;
 import me.nereo.multi_image_selector.utils.ScreenUtils;
+import me.nereo.multi_image_selector.utils.UriUtils;
 
 /**
  * Multi image selector Fragment
@@ -317,7 +318,8 @@ public class MultiImageSelectorFragment extends Fragment {
                     e.printStackTrace();
                 }
                 if (mTmpFile != null && mTmpFile.exists()) {
-                    intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(mTmpFile));
+                    // TODO: 2017/11/8  modify by Mengjie
+                    intent.putExtra(MediaStore.EXTRA_OUTPUT, UriUtils.parUri(getContext(),mTmpFile));
                     startActivityForResult(intent, REQUEST_CAMERA);
                 } else {
                     Toast.makeText(getActivity(), R.string.mis_error_image_not_exist, Toast.LENGTH_SHORT).show();

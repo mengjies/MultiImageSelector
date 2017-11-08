@@ -16,6 +16,8 @@ import android.widget.Button;
 import java.io.File;
 import java.util.ArrayList;
 
+import me.nereo.multi_image_selector.utils.UriUtils;
+
 /**
  * Multi image selector
  * Created by Nereo on 2015/4/7.
@@ -167,8 +169,8 @@ public class MultiImageSelectorActivity extends AppCompatActivity
     @Override
     public void onCameraShot(File imageFile) {
         if(imageFile != null) {
-            // notify system the image has change
-            sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(imageFile)));
+            // notify system the image has change // TODO: 2017/11/8 mofify by Mengjie
+            sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, UriUtils.parUri(this,imageFile)));
 
             Intent data = new Intent();
             resultList.add(imageFile.getAbsolutePath());
